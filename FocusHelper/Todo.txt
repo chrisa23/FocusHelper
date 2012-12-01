@@ -1,0 +1,3 @@
+- Better sounds, including a "tick" sound
+- Easier task text entry. (click to clear?)
+- Taskbar support?
