@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="SysTray.cs" />
     <Compile Include="TimerViewModel.cs" />
     <Page Include="TimerView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +109,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="clock.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="clock-cuckoo2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="clock-tick1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

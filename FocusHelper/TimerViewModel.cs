@@ -11,6 +11,8 @@
         private const string ZeroDisplay = "00:00";
         private readonly DispatcherTimer _timer;
         private int _countdown;
+        private readonly SoundPlayer _tickSound = new SoundPlayer("clock-tick1.wav");
+        private readonly SoundPlayer _alert = new SoundPlayer("clock-cuckoo2.wav");
 
         public TimerViewModel()
         {
@@ -30,10 +32,11 @@
                 //we are done....
                 TimeDisplay = ZeroDisplay;
                 BackColor = Brushes.IndianRed;
-                SystemSounds.Beep.Play();
+                _alert.Play();
             }
             else
             {
+                _tickSound.Play();
                 int minutes = _countdown / 60;
                 TimeDisplay = string.Format("{0}:{1}", minutes, (_countdown - minutes * 60).ToString("00"));
             }
@@ -75,10 +78,8 @@
 
         public void Start5()
         {
-            //set countdown, start timer...
             StartTimer(5);
         }
-
 
         public void Start10()
         {
@@ -105,6 +106,17 @@
             _timer.Stop();
             _timeDisplay = ZeroDisplay;
             BackColor = Brushes.White;
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            if (close)
+            {
+                _timer.Stop();
+                _tickSound.Dispose();
+                _alert.Dispose();
+            }
+            base.OnDeactivate(close);
         }
     }
 }
